@@ -3,10 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
-	"net"
+	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"github.com/harshpreet93/grpc-web-next-boilerplate/backend/grpc_gen"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"google.golang.org/grpc"
 )
 
@@ -21,14 +22,19 @@ func (h *HelloServer) SayHello(ctx context.Context, req *grpc_gen.HelloRequest) 
 
 func main() {
 
-	lis, err := net.Listen("tcp", "localhost:8080")
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
-	}
 	var opts []grpc.ServerOption
 
 	grpcServer := grpc.NewServer(opts...)
 	greeterService := grpc_gen.NewGreeterService(&HelloServer{})
 	grpc_gen.RegisterGreeterService(grpcServer, greeterService)
-	grpcServer.Serve(lis)
+
+	r := gin.Default()
+	wrappedGrpc := grpcweb.WrapServer(grpcServer)
+	r.Any("/", func(c *gin.Context) {
+		if wrappedGrpc.IsGrpcWebRequest(c.Request) {
+			wrappedGrpc.ServeHTTP(c.Writer, c.Request)
+		}
+		// Fall back to other servers.
+		http.DefaultServeMux.ServeHTTP(c.Writer, c.Request)
+	})
 }
