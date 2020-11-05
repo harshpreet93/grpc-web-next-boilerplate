@@ -13,13 +13,14 @@ interface State {
 export default class IndexPage extends Component<Props, State> {
   async updateMessage() {
     console.log("starting to update message");
-    var client = new GreeterClient("http://localhost:8080");
+    var client = new GreeterClient(location.protocol + '//' + location.host);
     var req = new HelloRequest();
     req.setName("harshpreet");
     var newMessage  = (await client.sayHello(req, {})).getMessage();
     this.setState( {message: newMessage}, () => {
       console.log("message is "+newMessage);
     });
+    
   }
 
   constructor(props: Props) {
