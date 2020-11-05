@@ -5,7 +5,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "build_static": "next build && next export && rm -rf ../backend/out && mv out ../backend/out",
+    "build_static": "rm -rf out && next build && next export",
     "type-check": "tsc"
   },
   "dependencies": {

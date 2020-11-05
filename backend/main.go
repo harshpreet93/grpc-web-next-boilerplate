@@ -33,7 +33,7 @@ func main() {
 	r := gin.Default()
 
 	wrappedGrpc := grpcweb.WrapServer(grpcServer)
-	box := packr.New("My Box", "./out")
+	box := packr.New("My Box", "../frontend/out")
 	// Greeter is the name of the service in the proto file
 	r.Any("/Greeter/:call", func(c *gin.Context) {
 		log.Printf("trying to route request")
