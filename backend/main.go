@@ -44,5 +44,8 @@ func main() {
 		// http.DefaultServeMux.ServeHTTP(c.Writer, c.Request)
 	})
 	r.StaticFS("/home", box)
-	r.Run()
+	err := r.Run()
+	if err != nil {
+		log.Fatal("fail")
+	}
 }
