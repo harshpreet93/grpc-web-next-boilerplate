@@ -11,6 +11,7 @@ require (
 	github.com/docker/go-connections v0.4.0 // indirect
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/dsnet/compress v0.0.1 // indirect
+	github.com/facebook/ent v0.5.0
 	github.com/gin-contrib/cors v1.3.1 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/gobuffalo/envy v1.9.0 // indirect
@@ -37,7 +38,7 @@ require (
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
 	golang.org/x/crypto v0.0.0-20201016220609-9e8e0b390897 // indirect
 	golang.org/x/sys v0.0.0-20201101102859-da207088b7d1 // indirect
-	golang.org/x/tools v0.0.0-20201102212025-f46e4245211d // indirect
+	golang.org/x/tools v0.0.0-20201117021029-3c3a81204b10 // indirect
 	google.golang.org/grpc v1.33.1
 	google.golang.org/protobuf v1.25.0
 )

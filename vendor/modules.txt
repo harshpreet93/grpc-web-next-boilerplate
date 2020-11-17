@@ -52,6 +52,13 @@ github.com/emirpasic/gods/lists/arraylist
 github.com/emirpasic/gods/trees
 github.com/emirpasic/gods/trees/binaryheap
 github.com/emirpasic/gods/utils
+# github.com/facebook/ent v0.5.0
+## explicit
+github.com/facebook/ent
+github.com/facebook/ent/schema
+github.com/facebook/ent/schema/edge
+github.com/facebook/ent/schema/field
+github.com/facebook/ent/schema/index
 # github.com/gin-contrib/cors v1.3.1
 ## explicit
 # github.com/gin-contrib/sse v0.1.0
@@ -126,7 +133,7 @@ github.com/jbenet/go-context/io
 # github.com/jhoonb/archivex v0.0.0-20201016144719-6a343cdae81d
 ## explicit
 github.com/jhoonb/archivex
-# github.com/json-iterator/go v1.1.9
+# github.com/json-iterator/go v1.1.10
 github.com/json-iterator/go
 # github.com/karrick/godirwalk v1.16.1
 ## explicit
@@ -147,7 +154,7 @@ github.com/markbates/oncer
 github.com/markbates/safe
 # github.com/mattn/go-isatty v0.0.12
 github.com/mattn/go-isatty
-# github.com/mattn/go-runewidth v0.0.8
+# github.com/mattn/go-runewidth v0.0.9
 github.com/mattn/go-runewidth
 # github.com/mholt/archiver v3.1.1+incompatible
 ## explicit
@@ -307,7 +314,7 @@ golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
 golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
-# golang.org/x/tools v0.0.0-20201102212025-f46e4245211d
+# golang.org/x/tools v0.0.0-20201117021029-3c3a81204b10
 ## explicit
 # google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013
 google.golang.org/genproto/googleapis/rpc/status
