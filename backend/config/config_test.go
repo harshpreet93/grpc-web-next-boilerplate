@@ -4,8 +4,6 @@ import (
 	"log"
 	"reflect"
 	"testing"
-
-	"github.com/harshpreet93/grpc-web-next-boilerplate/backend/util"
 )
 
 func TestConfig_New(t *testing.T) {
@@ -52,7 +50,7 @@ func TestConfig_New(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			c := Config{}
 			log.Printf("env is %s", tt.args.env)
-			if gotConfig, gotErr := c.New(tt.args.env); !reflect.DeepEqual(gotConfig, tt.want.conf) || !util.ErrorContains(gotErr, tt.want.err) {
+			if gotConfig, gotErr := c.New(tt.args.env); !reflect.DeepEqual(gotConfig, tt.want.conf) || !ErrorContains(gotErr, tt.want.err) {
 				t.Errorf("Config.New() = %v, err = %v, want %v", gotConfig, gotErr, tt.want)
 			}
 		})
