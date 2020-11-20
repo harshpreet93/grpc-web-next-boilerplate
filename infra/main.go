@@ -10,26 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi/config"
 )
 
-var userData = `#!/bin/bash -x
-set -euo pipefail
-export HOME="/root"
-curl -sL https://github.com/digitalocean/doctl/releases/download/v1.46.0/doctl-1.46.0-linux-amd64.tar.gz | tar -xzv
-mv ./doctl /usr/local/bin
-mkdir -p /root/.config
-doctl registry login -t {{.DoToken}}
-docker run -d \
-	--restart always \
-	--name watchtower \
-	-v /root/.docker/config.json:/config.json \
-	-v /var/run/docker.sock:/var/run/docker.sock \
-	containrrr/watchtower:1.0.2 --interval 30 --debug
-docker run -d \
-	--restart always \
-	--name app \
-	-p 8080:8080 \
-	{{.AppImage}}
-`
-
 type userDataVars struct {
 	DoToken  string
 	AppImage string
@@ -44,7 +24,9 @@ func synthesizeStack(stackName, appImage, tag, dc, sizeSlug, sshKey, userData st
 		var out bytes.Buffer
 		if err := t.Execute(&out, userDataVars{DoToken: doToken, AppImage: image}); err != nil {
 			return err
-		}
+		
+		// TODO: set up LB
+		
 		for i := 0; i < desiredInstances; i++ {
 			droplet, err := digitalocean.NewDroplet(ctx, fmt.Sprintf("%s-%d", stackName, i), &digitalocean.DropletArgs{
 				Name:     pulumi.String(fmt.Sprintf("%s-%d", stackName, i)),
@@ -58,13 +40,10 @@ func synthesizeStack(stackName, appImage, tag, dc, sizeSlug, sshKey, userData st
 				return err
 			}
 			ctx.Export(fmt.Sprintf("appInstance-%s-%d", stackName, i), droplet.Ipv4Address)
+			// TODO: ship necessary files to the instances
+			// TODO: Reload services and restart
+			// TODO: wait for app to be healthy
 		}
-
-		digitalocean.NewKubernetesCluster(ctx, fmt.Sprintf("%s", stackName, &digitalocean.KubernetesClusterArgs{
-			
-		})
-
-		)
 
 		return nil
 	}

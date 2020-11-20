@@ -13,4 +13,4 @@
 - Re generate the server and client code by going into the service directory and running `./gen.sh`
 
 # Building and starting dev server
-- `./start_dev.sh`
+- Run `./start_dev.sh`

@@ -1,0 +1,9 @@
+[Unit]
+Description=app
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/app
+
+[Install]
+WantedBy=multi-user.target

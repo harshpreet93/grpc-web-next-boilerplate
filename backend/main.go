@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"log"
 
@@ -23,6 +24,7 @@ func (h *HelloServer) SayHello(ctx context.Context, req *grpc_gen.HelloRequest) 
 }
 
 func main() {
+	var nFlag = flag.String("env", "dev", "help message for flag n")
 
 	var opts []grpc.ServerOption
 
