@@ -1,6 +1,9 @@
 package schema
 
-import "github.com/facebook/ent"
+import (
+	"github.com/facebook/ent"
+	"github.com/facebook/ent/schema/field"
+)
 
 // User holds the schema definition for the User entity.
 type User struct {
@@ -9,7 +12,9 @@ type User struct {
 
 // Fields of the User.
 func (User) Fields() []ent.Field {
-	return nil
+	return []ent.Field{
+		field.Int("name"),
+		field.String("email")}
 }
 
 // Edges of the User.

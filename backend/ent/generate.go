@@ -1,5 +1,20 @@
 package ent
 
-import _ "github.com/facebook/ent"
+import (
+	"log"
 
-//go:generate go run github.com/facebook/ent/cmd/entc generate ./schema
+	"github.com/facebook/ent/entc"
+	"github.com/facebook/ent/entc/gen"
+	"github.com/facebook/ent/schema/field"
+)
+
+// Generate generates code for DB schemas
+func Generate() {
+	err := entc.Generate("./schema", &gen.Config{
+		Header: "// Your Custom Header",
+		IDType: &field.TypeInfo{Type: field.TypeInt},
+	})
+	if err != nil {
+		log.Fatal("running ent codegen:", err)
+	}
+}

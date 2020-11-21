@@ -5,7 +5,11 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
 
+	"github.com/facebook/ent/entc"
+	"github.com/facebook/ent/entc/gen"
+	"github.com/facebook/ent/schema/field"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gobuffalo/packr/v2"
@@ -46,9 +50,26 @@ func migrateDB(conn *ent.Client) error {
 	return err
 }
 
-func main() {
-	var env = flag.String("env", "dev", "help message for flag n")
+func generate() {
+	err := entc.Generate("./ent/schema", &gen.Config{
+		Header: "// Your Custom Header",
+		IDType: &field.TypeInfo{Type: field.TypeInt},
+	})
+	if err != nil {
+		log.Fatal("running ent codegen:", err)
+	}
+}
 
+func main() {
+	shouldGenerate := flag.Bool("generate", false, "Set generate to true to regenerate DB model code")
+
+	var env = flag.String("env", "dev", "help message for flag n")
+	flag.Parse()
+	if *shouldGenerate {
+		log.Printf("Generating DB code")
+		generate()
+		os.Exit(0)
+	}
 	conf, err := config.New(*env)
 
 	if err != nil {

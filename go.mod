@@ -26,7 +26,7 @@ require (
 	github.com/sirupsen/logrus v1.7.0 // indirect
 	golang.org/x/crypto v0.0.0-20201016220609-9e8e0b390897 // indirect
 	golang.org/x/sys v0.0.0-20201101102859-da207088b7d1 // indirect
-	golang.org/x/tools v0.0.0-20201117021029-3c3a81204b10 // indirect
+	golang.org/x/tools v0.0.0-20201121010211-780cb80bd7fb // indirect
 	google.golang.org/grpc v1.33.1
 	google.golang.org/protobuf v1.25.0
 )
