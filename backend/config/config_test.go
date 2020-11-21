@@ -1,7 +1,6 @@
 package config
 
 import (
-	"log"
 	"reflect"
 	"testing"
 )
@@ -27,7 +26,7 @@ func TestConfig_New(t *testing.T) {
 			want: struct {
 				conf Config
 				err  string
-			}{Config{"this_is_a_password"}, ""},
+			}{Config{"this_is_a_password", "localhost:3306"}, ""},
 		},
 		{
 			name: "Config is not found and fallback is triggered",
@@ -35,7 +34,7 @@ func TestConfig_New(t *testing.T) {
 			want: struct {
 				conf Config
 				err  string
-			}{Config{"devpass"}, ""},
+			}{Config{"devpass", "localhost:3306"}, ""},
 		},
 		{
 			name: "Config found, but is invalid",
@@ -48,10 +47,8 @@ func TestConfig_New(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := Config{}
-			log.Printf("env is %s", tt.args.env)
-			if gotConfig, gotErr := c.New(tt.args.env); !reflect.DeepEqual(gotConfig, tt.want.conf) || !ErrorContains(gotErr, tt.want.err) {
-				t.Errorf("Config.New() = %v, err = %v, want %v", gotConfig, gotErr, tt.want)
+			if gotConfig, gotErr := New(tt.args.env); !reflect.DeepEqual(gotConfig, tt.want.conf) || !ErrorContains(gotErr, tt.want.err) {
+				t.Errorf("New() = %v, err = %v, want %v", gotConfig, gotErr, tt.want)
 			}
 		})
 	}

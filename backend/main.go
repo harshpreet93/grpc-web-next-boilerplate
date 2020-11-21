@@ -7,7 +7,11 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/gobuffalo/packr/v2"
+	"github.com/harshpreet93/grpc-web-next-boilerplate/backend/config"
+	"github.com/harshpreet93/grpc-web-next-boilerplate/backend/ent"
+	"github.com/harshpreet93/grpc-web-next-boilerplate/backend/ent/migrate"
 	"github.com/harshpreet93/grpc-web-next-boilerplate/backend/grpc_gen"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"google.golang.org/grpc"
@@ -23,8 +27,41 @@ func (h *HelloServer) SayHello(ctx context.Context, req *grpc_gen.HelloRequest) 
 	return &grpc_gen.HelloReply{Message: fmt.Sprintf("hello %s", req.GetName())}, nil
 }
 
+func initDBConn(conf config.Config) *ent.Client {
+	client, err := ent.Open("mysql",
+		fmt.Sprintf("app:%s@tcp(localhost:3306)/app", conf.DBPass))
+	if err != nil {
+		log.Fatalf("failed connecting to mysql: %v", err)
+	}
+	return client
+}
+
+func migrateDB(conn *ent.Client) error {
+	ctx := context.Background()
+	err := conn.Schema.Create(
+		ctx,
+		migrate.WithDropIndex(false),
+		migrate.WithDropColumn(false),
+	)
+	return err
+}
+
 func main() {
-	var nFlag = flag.String("env", "dev", "help message for flag n")
+	var env = flag.String("env", "dev", "help message for flag n")
+
+	conf, err := config.New(*env)
+
+	if err != nil {
+		log.Fatalf("Config could not be initialized %+v", err)
+	}
+
+	conn := initDBConn(conf)
+	defer conn.Close()
+	err = migrateDB(conn)
+
+	if err != nil {
+		log.Fatalf("Error migrating DB %+v", err)
+	}
 
 	var opts []grpc.ServerOption
 
@@ -46,7 +83,7 @@ func main() {
 		// http.DefaultServeMux.ServeHTTP(c.Writer, c.Request)
 	})
 	r.StaticFS("/home", box)
-	err := r.Run()
+	err = r.Run()
 	if err != nil {
 		log.Fatal("fail")
 	}

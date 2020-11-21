@@ -11,6 +11,7 @@ import (
 // Config stores the config needed by the app to operate
 type Config struct {
 	DBPass string `json:"DBPass"`
+	DBHost string `json:"DBHost"`
 }
 
 var configLocations = map[string]string{
@@ -19,10 +20,10 @@ var configLocations = map[string]string{
 	"testInvalid": "./test_invalid.json",
 }
 
-var defaultConfig = &Config{DBPass: "devpass"}
+var defaultConfig = &Config{DBPass: "devpass", DBHost: "localhost:3306"}
 
 // New creates a Config object for the env specified
-func (c Config) New(env string) (Config, error) {
+func New(env string) (Config, error) {
 	location, found := configLocations[env]
 	if !found {
 		log.Printf("Cannot find config file %s, falling back to default config", location)

@@ -51,19 +51,10 @@ github.com/emirpasic/gods/utils
 # github.com/facebook/ent v0.5.0
 ## explicit
 github.com/facebook/ent
-github.com/facebook/ent/cmd/entc
 github.com/facebook/ent/dialect
-github.com/facebook/ent/dialect/entsql
-github.com/facebook/ent/dialect/gremlin/graph/dsl
 github.com/facebook/ent/dialect/sql
 github.com/facebook/ent/dialect/sql/schema
 github.com/facebook/ent/dialect/sql/sqlgraph
-github.com/facebook/ent/entc
-github.com/facebook/ent/entc/gen
-github.com/facebook/ent/entc/gen/internal
-github.com/facebook/ent/entc/internal
-github.com/facebook/ent/entc/load
-github.com/facebook/ent/entc/load/internal
 github.com/facebook/ent/entql
 github.com/facebook/ent/schema
 github.com/facebook/ent/schema/edge
@@ -78,10 +69,6 @@ github.com/gin-gonic/gin/binding
 github.com/gin-gonic/gin/internal/bytesconv
 github.com/gin-gonic/gin/internal/json
 github.com/gin-gonic/gin/render
-# github.com/go-bindata/go-bindata v1.0.1-0.20190711162640-ee3c2418e368
-github.com/go-bindata/go-bindata
-# github.com/go-openapi/inflect v0.19.0
-github.com/go-openapi/inflect
 # github.com/go-playground/locales v0.13.0
 github.com/go-playground/locales
 github.com/go-playground/locales/currency
@@ -89,6 +76,9 @@ github.com/go-playground/locales/currency
 github.com/go-playground/universal-translator
 # github.com/go-playground/validator/v10 v10.2.0
 github.com/go-playground/validator/v10
+# github.com/go-sql-driver/mysql v1.5.1-0.20200311113236-681ffa848bae
+## explicit
+github.com/go-sql-driver/mysql
 # github.com/gobuffalo/logger v1.0.3
 github.com/gobuffalo/logger
 # github.com/gobuffalo/packd v1.0.0
@@ -168,8 +158,6 @@ github.com/mitchellh/go-ps
 github.com/modern-go/concurrent
 # github.com/modern-go/reflect2 v1.0.1
 github.com/modern-go/reflect2
-# github.com/olekukonko/tablewriter v0.0.4
-github.com/olekukonko/tablewriter
 # github.com/opencontainers/go-digest v1.0.0
 ## explicit
 github.com/opencontainers/go-digest
@@ -181,6 +169,7 @@ github.com/opentracing/opentracing-go
 github.com/opentracing/opentracing-go/ext
 github.com/opentracing/opentracing-go/log
 # github.com/pkg/errors v0.9.1
+## explicit
 github.com/pkg/errors
 # github.com/pulumi/pulumi-digitalocean/sdk/v2 v2.9.0
 ## explicit
@@ -286,9 +275,6 @@ golang.org/x/crypto/ssh/agent
 golang.org/x/crypto/ssh/internal/bcrypt_pbkdf
 golang.org/x/crypto/ssh/knownhosts
 golang.org/x/crypto/ssh/terminal
-# golang.org/x/mod v0.3.0
-golang.org/x/mod/module
-golang.org/x/mod/semver
 # golang.org/x/net v0.0.0-20201021035429-f5854403a974
 golang.org/x/net/context
 golang.org/x/net/context/ctxhttp
@@ -314,25 +300,6 @@ golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 # golang.org/x/tools v0.0.0-20201117021029-3c3a81204b10
 ## explicit
-golang.org/x/tools/go/ast/astutil
-golang.org/x/tools/go/gcexportdata
-golang.org/x/tools/go/internal/gcimporter
-golang.org/x/tools/go/internal/packagesdriver
-golang.org/x/tools/go/packages
-golang.org/x/tools/imports
-golang.org/x/tools/internal/event
-golang.org/x/tools/internal/event/core
-golang.org/x/tools/internal/event/keys
-golang.org/x/tools/internal/event/label
-golang.org/x/tools/internal/fastwalk
-golang.org/x/tools/internal/gocommand
-golang.org/x/tools/internal/gopathwalk
-golang.org/x/tools/internal/imports
-golang.org/x/tools/internal/packagesinternal
-golang.org/x/tools/internal/typesinternal
-# golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1
-golang.org/x/xerrors
-golang.org/x/xerrors/internal
 # google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013
 google.golang.org/genproto/googleapis/rpc/status
 # google.golang.org/grpc v1.33.1

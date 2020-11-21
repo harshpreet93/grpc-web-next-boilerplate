@@ -11,12 +11,14 @@ require (
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/facebook/ent v0.5.0
 	github.com/gin-gonic/gin v1.6.3
+	github.com/go-sql-driver/mysql v1.5.1-0.20200311113236-681ffa848bae
 	github.com/gobuffalo/packr/v2 v2.8.0
 	github.com/golang/protobuf v1.4.3
 	github.com/improbable-eng/grpc-web v0.13.0
 	github.com/jhoonb/archivex v0.0.0-20201016144719-6a343cdae81d
 	github.com/karrick/godirwalk v1.16.1 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
+	github.com/pkg/errors v0.9.1
 	github.com/pulumi/pulumi-digitalocean/sdk/v2 v2.9.0
 	github.com/pulumi/pulumi/sdk/v2 v2.13.2
 	github.com/rogpeppe/go-internal v1.6.2 // indirect
